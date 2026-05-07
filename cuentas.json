@@ -1,0 +1,14 @@
+[
+  {
+    "account_id": 1,
+    "nombre": "Juan Perez",
+    "saldo": 1000.0,
+    "estado": "activa"
+  },
+  {
+    "account_id": 2,
+    "nombre": "Maria Lopez",
+    "saldo": 500.0,
+    "estado": "bloqueada"
+  }
+]

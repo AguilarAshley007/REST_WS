@@ -2,6 +2,9 @@ import time
 from queue_manager import message_queue, results
 from storage import get_account, update_account
 
+def validar_monto(monto):
+    return isinstance(monto, (int, float)) and monto > 0
+
 def process_message(msg):
     req_id = msg["request_id"]
     tipo = msg["type"]
@@ -15,7 +18,7 @@ def process_message(msg):
         return
 
     if tipo == "deposito":
-        if monto <= 0:
+        if not validar_monto(monto):
             results[req_id] = {"status": "error", "mensaje": "Monto inválido"}
             return
 
@@ -29,6 +32,10 @@ def process_message(msg):
             results[req_id] = {"status": "error", "mensaje": "Cuenta inactiva"}
             return
 
+        if not validar_monto(monto):
+            results[req_id] = {"status": "error", "mensaje": "Monto inválido"}
+            return
+
         if account["saldo"] < monto:
             results[req_id] = {"status": "error", "mensaje": "Fondos insuficientes"}
             return
@@ -39,8 +46,12 @@ def process_message(msg):
         results[req_id] = {"status": "done", "saldo": account["saldo"]}
 
 def worker_loop():
+    print("Worker iniciado...")
     while True:
         msg = message_queue.get()
         process_message(msg)
         message_queue.task_done()
         time.sleep(0.5)  # simula procesamiento
+
+if __name__ == "__main__":
+    worker_loop()

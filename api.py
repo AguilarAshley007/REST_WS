@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 import uuid
 import jwt
 import datetime
@@ -229,6 +229,14 @@ def resultado(request_id):
     if not res:
         return jsonify({"error": "request_id no encontrado"}), 404
     return jsonify(res)
+
+
+@app.route("/certificado", methods=["GET"])
+def descargar_certificado():
+    return send_file(
+        "server.crt",
+        as_attachment=True
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)

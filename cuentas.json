@@ -2,13 +2,25 @@
   {
     "account_id": 1,
     "nombre": "Juan Perez",
-    "saldo": 1000.0,
-    "estado": "activa"
+    "saldo": 600.0,
+    "estado": "bloqueada"
   },
   {
     "account_id": 2,
     "nombre": "Maria Lopez",
-    "saldo": 500.0,
+    "saldo": 1590.0,
     "estado": "bloqueada"
+  },
+  {
+    "account_id": 3,
+    "nombre": "Monse",
+    "saldo": 1000,
+    "estado": "activa"
+  },
+  {
+    "account_id": 4,
+    "nombre": "Enrique",
+    "saldo": 50010,
+    "estado": "activa"
   }
 ]

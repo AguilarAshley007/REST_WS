@@ -9,5 +9,9 @@ if __name__ == "__main__":
     worker_thread = Thread(target=worker_loop, daemon=True)
     worker_thread.start()
 
-    app.run(port=5000, debug=True)
-    
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=True,
+        ssl_context=("server.crt", "server.key")
+    )
